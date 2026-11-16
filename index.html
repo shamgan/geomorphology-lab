@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>הכוחות החיצוניים בפעולה</title><link rel="stylesheet" href="style.css"></head><body>
+<div class="wrap">
+  <header>
+    <div>
+      <div class="kicker">מעבדה אינטראקטיבית | גיאומורפולוגיה</div>
+      <h1>הכוחות החיצוניים בפעולה</h1>
+      <div class="sub">ארבע הדמיות דינמיות במראה צילומי: בחרו תהליך, הפעילו, עצרו ושנו תנאים.</div>
+    </div>
+  </header>
+
+  <nav class="tabs" id="tabs" aria-label="בחירת הדמיה"></nav>
+
+  <!-- SIM 1: freeze-thaw -->
+  <section class="sim" id="sim-freeze" hidden>
+    <div class="grid">
+      <aside class="panel">
+        <div class="tag">בליה מכנית</div>
+        <h2>קפיאה והפשרה</h2>
+        <p>מים החודרים לסדקים מתרחבים בקפיאה ומפעילים לחץ על דפנות הסדק. מחזורי קפיאה והפשרה חוזרים מרחיבים את הסדק מעט בכל פעם, עד להתנתקות חלק מהסלע — בלי שינוי בהרכבו הכימי.</p>
+        <div class="sep"></div>
+        <div class="stepno" id="fr-stage-label"></div>
+        <div class="controls">
+          <button id="fr-play" class="primary">▶ הפעלה</button>
+          <button id="fr-reset">התחלה מחדש</button>
+          <button id="fr-speed">מהירות ×1</button>
+        </div>
+        <div class="sep"></div>
+        <div class="stat"><span>מחזור</span><b id="fr-cycle">1 מתוך 1</b></div>
+      </aside>
+      <div class="stage photo">
+        <img data-img="freeze-base" alt="סלע גיר עם סדק">
+        <img data-img="freeze-wet" alt="">
+        <img data-img="freeze-frozen" alt="">
+        <canvas id="fr-fx" width="1600" height="900"></canvas>
+        <div class="chip" id="fr-chip"></div>
+        <div class="tempchip" id="fr-temp"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIM 2: karst -->
+  <section class="sim" id="sim-karst" hidden>
+    <div class="grid">
+      <aside class="panel">
+        <div class="tag">בליה כימית</div>
+        <h2>המסת גיר ושקיעת קלציט</h2>
+        <p>מי גשם סופגים CO₂, הופכים חומציים מעט וממיסים את סלע הגיר לאורך סדקים — כך נוצרים חללים ומערות. בתוך המערה, כשהמים מאבדים CO₂, קלציט נשקע ובונה נטיפים וזקיפים.</p>
+        <div class="sep"></div>
+        <div class="stepno" id="ka-stage-label"></div>
+        <div class="controls">
+          <button id="ka-play" class="primary">▶ הפעלה</button>
+          <button id="ka-reset">התחלה מחדש</button>
+          <button id="ka-speed">מהירות ×1</button>
+        </div>
+      </aside>
+      <div class="stage photo">
+        <img data-img="karst-surface" alt="משטח גיר קרסטי בגשם">
+        <img data-img="karst-early" alt="">
+        <img data-img="karst-late" alt="">
+        <canvas id="ka-fx" width="1600" height="900"></canvas>
+        <div class="chip" id="ka-chip"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIM 3: river -->
+  <section class="sim" id="sim-river" hidden>
+    <div class="grid">
+      <aside class="panel">
+        <div class="tag">תהליכי נהר</div>
+        <h2>סחיפה, הסעה והשקעה</h2>
+        <p>כושר ההסעה של נהר תלוי בספיקה: בזרימה חזקה הנהר סוחף ומסיע חומר גס, ובהיחלשות הזרימה הוא משקיע אותו — חלקיקים גסים ראשונים. שנו את הספיקה וצפו בשינוי, או עברו לתצוגת המיאנדר כדי לראות כיצד נהר משנה את אפיקו לאורך זמן.</p>
+        <div class="sep"></div>
+        <div class="controls">
+          <button id="rv-play" class="primary">▶ הפעלה</button>
+          <button id="rv-speed">מהירות ×1</button>
+          <button id="rv-mode">מעבר לתצוגת מיאנדר</button>
+        </div>
+        <div class="sep"></div>
+        <label class="slider-label" id="rv-qrow">ספיקת הנהר: <b id="rv-qlabel">רגילה</b>
+          <input type="range" id="rv-q" min="0" max="100" value="35">
+        </label>
+        <div class="stat" id="rv-epochrow" hidden><span>נדידת המיאנדר</span><b id="rv-epoch">0%</b></div>
+      </aside>
+      <div class="stage photo">
+        <img data-img="river-low" alt="נהר בספיקה נמוכה, טרסות חצץ חשופות">
+        <img data-img="river-high" alt="">
+        <img data-img="meander-early" alt="צילום אוויר של נהר מסתלסל במישור הצפה" style="display:none">
+        <img data-img="meander-late" alt="" style="display:none">
+        <canvas id="rv-fx" width="1600" height="900"></canvas>
+        <div class="chip" id="rv-chip"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIM 4: colorado -->
+  <section class="sim" id="sim-colorado" hidden>
+    <div class="grid">
+      <aside class="panel">
+        <div class="tag">נהר הקולורדו</div>
+        <h2>לפני ואחרי שחרור מים מבוקר</h2>
+        <p>גדת נהר הקולורדו בגרנד קניון, נובמבר–דצמבר 2004: לאחר שחרור מים מבוקר מסכר גלן קניון נמדדה שכבת חול חדשה בעובי כשני מטרים על הגדה. גררו את המחוון להשוואה.</p>
+        <p class="illus">התמונות נוצרו בבינה מלאכותית להמחשה בלבד: הן אינן תצלומים אמיתיים, אינן שחזור מדעי ואינן ראיה לשינוי שאירע בפועל. הנתון על שכבת חול בעובי כשני מטרים מובא ממסמך המקור ולא נבדק באופן עצמאי.</p>
+        <div class="sep"></div>
+        <label class="slider-label">השוואה: נובמבר 2004 מול דצמבר 2004
+          <input type="range" id="cc-range" min="0" max="100" value="50">
+        </label>
+        <div class="controls">
+          <button id="cc-data">הצג נתוני זרימה ומדידות</button>
+          <button id="cc-march">הצג את מרץ 2005</button>
+        </div>
+      </aside>
+      <div class="stage photo">
+        <img data-img="col-before" alt="גדת הקולורדו, נובמבר 2004">
+        <img data-img="col-after" alt="">
+        <img data-img="col-march" alt="" style="display:none">
+        <canvas id="cc-fx" width="1600" height="900"></canvas>
+        <div class="chip" id="cc-chip">נובמבר 2004 ⟵ גררו ⟵ דצמבר 2004</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    ההדמיות מבוססות על תמונות שנוצרו בבינה מלאכותית, עם מעברים ותנועה ביניהן; משך האנימציה אינו מייצג את משך התהליך בטבע.
+  </footer>
+
+</div>
+<script src="lab.js"></script></body></html>
